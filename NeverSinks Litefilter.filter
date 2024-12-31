@@ -38,8 +38,9 @@ PlayAlertSound 6 300
 PlayEffect Red
 MinimapIcon 0 Red Star
 
+# --- High value "Feature" drops
 Show
-BaseType == "Distilled Isolation" "Distilled Suffering"
+BaseType == "Distilled Isolation" "Distilled Suffering" "Soul Core of Azcapa" "An Audience with the King" "Greater Essence of Haste"
 SetFontSize 45
 SetTextColor 255 0 0 255
 SetBorderColor 255 0 0 255
@@ -48,6 +49,14 @@ PlayAlertSound 6 300
 PlayEffect Red
 MinimapIcon 0 Red Star
 
+Show # High valuable unique potential for chancing
+	Mirrored False
+	Corrupted False
+	Rarity Normal
+	BaseType == "Heavy Belt" "Stellar Amulet" "Azure Amulet" "Emerald Ring"
+	SetFontSize 35
+	SetTextColor 255 255 255 255
+	SetBorderColor 0 150 0 90
 
 #--------------------------
 # Gold
@@ -79,15 +88,24 @@ SetBackgroundColor 0 0 0 180
 # Uncut Gems
 #--------------------------
 
-# Always make Spirit gems pop
-Show
-BaseType "Uncut Spirit Gem"
+# Always make Spirit gems pop during campaign
+# Show
+# AreaLevel < 66
+# BaseType "Uncut Spirit Gem"
+# SetTextColor 20 240 240
+# SetBorderColor 20 240 240
+# PlayAlertSound 2 300
+# PlayEffect Cyan
+# MinimapIcon 1 Cyan Triangle
+# SetFontSize 40
+
+# Hide low tier gems in T15+ Maps
+Hide
+AreaLevel >= 79
+ItemLevel <= 18
+BaseType "Uncut Spirit Gem" "Uncut Spirit Gem"
 SetTextColor 20 240 240
 SetBorderColor 20 240 240
-PlayAlertSound 2 300
-PlayEffect Cyan
-MinimapIcon 1 Cyan Triangle
-SetFontSize 40
 
 # Make support gems pop during campaign
 Show
@@ -100,6 +118,14 @@ PlayEffect Cyan
 MinimapIcon 1 Cyan Triangle
 SetFontSize 40
 
+# Make support gems less noticable
+Show
+BaseType "Uncut Support Gem"
+SetTextColor 20 240 240
+SetBorderColor 20 240 240
+SetBackgroundColor 0 0 0 125
+SetFontSize 20
+
 # Make skill gems pop during campaign
 Show
 AreaLevel < 65
@@ -111,33 +137,80 @@ PlayEffect Cyan
 MinimapIcon 1 Cyan Triangle
 SetFontSize 40
 
-# Gems up to level 18 in maps don't get a special highlight
+# -- Tiered Spirit gems --
+# Spirit gem 20 pops a lot more
 Show
-ItemLevel <= 18
-BaseType "Uncut Skill Gem"
-SetTextColor 20 240 240
-SetBorderColor 20 240 240
-SetFontSize 35
+ItemLevel >= 20
+BaseType "Uncut Spirit Gem"
+SetFontSize 45
+SetTextColor 0 0 255 255
+SetBorderColor 0 0 255 255
+SetBackgroundColor 255 200 255 255
+PlayAlertSound 6 300
+PlayEffect Purple
+MinimapIcon 0 Purple Star
 
+# Spirit gem 19 pops a little more
 Show
-BaseType "Uncut Support Gem"
-SetTextColor 20 240 240
-SetBorderColor 20 240 240
+ItemLevel >= 19
+BaseType "Uncut Spirit Gem"
 SetFontSize 35
+SetTextColor 180 70 220 255
+SetBorderColor 180 70 220 255
+SetBackgroundColor 0 0 0 255
 
-# Level 19 gems and up in maps get a special highlight
+# Lower level Spirit gems pop less
 Show
+BaseType "Uncut Spirit Gem"
+SetFontSize 25
+SetTextColor 136 105 250 255
+SetBorderColor 136 105 250 255
+SetBackgroundColor 0 0 0 255
+
+# -- Tiered Skill gems --
+# Skill gems 20 pops a lot more
+Show
+ItemLevel >= 20
 BaseType "Uncut Skill Gem"
-SetTextColor 20 240 240
-SetBorderColor 20 240 240
-PlayAlertSound 2 300
+SetFontSize 45
+SetTextColor 0 0 255 255
+SetBorderColor 0 0 255 255
+SetBackgroundColor 200 255 255 255
+PlayAlertSound 6 300
 PlayEffect Cyan
-MinimapIcon 1 Cyan Triangle
-SetFontSize 40
+MinimapIcon 0 Blue Star
+
+# Skill gems 19 pops a little more
+Show
+ItemLevel == 19
+BaseType "Uncut Skill Gem"
+SetFontSize 35
+SetTextColor 70 180 220 255
+SetBorderColor 70 180 220 255
+SetBackgroundColor 0 0 0 255
+
+# Lower level Skill gems pop less
+Show
+BaseType "Uncut Skill Gem"
+SetFontSize 25
+SetTextColor 105 136 250 255
+SetBorderColor 105 136 250 255
+SetBackgroundColor 0 0 0 255
 
 #--------------------------
 # Socketables and Special Character Equipment
 #--------------------------
+
+
+# --- Low Value soul cores --- 
+Show
+BaseType "Soul Core of Atmohua" "Soul Core of Zantipi"
+SetTextColor 0 240 190
+SetBorderColor 0 240 190
+SetFontSize 25
+MinimapIcon 0 Cyan Diamond
+PlayAlertSound 2 300
+PlayEffect Cyan
 
 # Special A Tier - League specific socketables and jewels
 Show 
@@ -245,7 +318,7 @@ SetFontSize 40
 # Currency Tier B: Regal, Vaal ...
 Show
 Class "Currency"
-BaseType "Gemcutter's Prism" "Vaal Orb" "Chaos Orb" "Lesser Jeweller's Orb" "Regal Orb" "Artificer's Orb" "Glassblower's Bauble" "Orb of Alchemy"
+BaseType "Gemcutter's Prism" "Vaal Orb" "Chaos Orb" "Regal Orb" "Artificer's Orb" "Glassblower's Bauble" "Orb of Alchemy"
 SetTextColor 255 207 132
 SetBorderColor 255 207 132
 SetBackgroundColor 76 51 12
@@ -276,6 +349,16 @@ PlayEffect White
 MinimapIcon 2 White Circle
 SetFontSize 40
 
+# --- Low Value Catalysts ---
+Show
+Class "Currency"
+BaseType "Flesh Catalyst" "Xoph's Catalyst" "Uul-Netol's Catalyst" "Sibilant Catalyst" "Skittering Catalyst"
+SetTextColor 255 207 132
+SetBorderColor 255 207 132
+SetBackgroundColor 76 51 12
+SetFontSize 25
+
+# --- Catch all Catalyst, Distills, and Essences
 Show
 Class "Currency"
 BaseType "Distilled" "Catalyst" "Essence of"
@@ -302,6 +385,13 @@ BaseType "Arcanist's Etcher" "Armourer's Scrap" "Blacksmith's Whetstone" "Orb of
 SetTextColor 220 190 132
 MinimapIcon 2 Grey Circle
 SetFontSize 35
+
+# Currency Tier D: Lesser Jeweller's
+Show
+Class "Currency"
+BaseType "Lesser Jeweller's Orb"
+SetTextColor 220 190 132
+SetFontSize 25
 
 Show
 Class "Currency"
@@ -349,6 +439,7 @@ SetFontSize 45
 
 Show
 BaseType "Barya" "Ultimatum"
+ItemLevel >= 75
 SetTextColor 255 207 255
 SetBorderColor 255 207 255
 SetBackgroundColor 65 20 80
@@ -357,18 +448,41 @@ PlayEffect Grey
 MinimapIcon 1 Grey Square
 SetFontSize 40
 
+Show
+BaseType "Barya" "Ultimatum"
+SetTextColor 255 207 255
+SetBorderColor 255 207 255
+SetBackgroundColor 65 20 80
+SetFontSize 25
+
 #--------------------------
 # Waystones
 #--------------------------
 
 Show
-WaystoneTier < 10
+WaystoneTier == 15
+SetBorderColor 0 0 255
+SetBackgroundColor 0 70 0
+SetFontSize 40
+
+Show
+WaystoneTier <= 13
+AreaLevel > 79
+BaseType "Waystone"
+Rarity <= Rare
+SetTextColor 255 255 255
+SetBorderColor 255 255 255
+SetFontSize 30
+
+Show
+WaystoneTier <= 10
 AreaLevel > 77
 BaseType "Waystone"
 Rarity <= Rare
 SetTextColor 255 255 255
 SetBorderColor 255 255 255
-SetFontSize 35
+SetBackgroundColor 0 0 0 175
+SetFontSize 30
 
 Show
 WaystoneTier < 5
@@ -377,7 +491,8 @@ BaseType "Waystone"
 Rarity <= Rare
 SetTextColor 255 255 255
 SetBorderColor 255 255 255
-SetFontSize 35
+SetBackgroundColor 0 0 0 125
+SetFontSize 25
 
 Show
 BaseType "Waystone"
@@ -388,6 +503,7 @@ PlayAlertSound 4 300
 PlayEffect White
 MinimapIcon 1 White Square
 SetFontSize 40
+
 
 #--------------------------
 # Value Rares
@@ -421,21 +537,9 @@ SetFontSize 40
 #--------------------------
 
 Show
-Sockets > 0
-Rarity Normal
-SetBorderColor 200 200 200
-SetFontSize 35
-
-Show
 Quality > 0
 Rarity Normal
 SetBorderColor 200 200 200
-SetFontSize 35
-
-Show
-Sockets > 0
-Rarity Magic
-SetBorderColor 0 0 200
 SetFontSize 35
 
 Show
@@ -469,6 +573,12 @@ Quality = 0
 AreaLevel > 70
 Rarity <= Magic
 Class "Flasks"
+
+Hide
+AreaLevel >= 79
+Rarity <= Magic
+DropLevel < 70
+Class "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Foci" "One Hand Maces" "Two Hand Maces" "Quarterstaves" "Bows" "Crossbows"
 
 Hide
 AreaLevel >= 78
@@ -515,19 +625,28 @@ Class "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Foci" "Quivers" "One 
 ### OPTIONAL RULE: Hide random bases
 # REMOVE THE BASES YOU --DO-- WANT TO SEE BEFORE SETTING TO HIDE
 
+# Show high level drop types - Armours
+Show
+Rarity <= Magic
+BaseEvasion == 0
+BaseArmour == 0
+BaseEnergyShield > 0
+Class "Body Armours" "Helmets" "Boots" "Gloves" "Shields"
+DropLevel >= 75
+
 # Hide
 # Rarity <= Magic
-# Class "Flasks" "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Foci" "Quivers" "One Hand Maces" "Two Hand Maces" "Staves" "Quarterstaves" "Bows" "Crossbows" "Wands" "Sceptres"
+# Class "Flasks" "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Quivers" "One Hand Maces" "Quarterstaves" "Bows" "Crossbows" "Sceptres"
 # AreaLevel >= 65
 
 ### OPTIONAL RULE: REDUCES BACKGROUND ON LOW LEVEL BASES
 
-# Show
-# Rarity <= Magic
-# Class "Flasks" "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Foci" "Quivers" "One Hand Maces" "Two Hand Maces" "Staves" "Quarterstaves" "Bows" "Crossbows" "Wands" "Sceptres"
-# AreaLevel >= 65
-# DropLevel <= 50
-# SetBackgroundColor 0 0 0 125
+Show
+Rarity <= Magic
+Class "Flasks" "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Foci" "Quivers" "One Hand Maces" "Two Hand Maces" "Staves" "Quarterstaves" "Bows" "Crossbows" "Wands" "Sceptres"
+AreaLevel >= 65
+DropLevel <= 50
+SetBackgroundColor 0 0 0 125
 
 #--------------------------
 # Meta
