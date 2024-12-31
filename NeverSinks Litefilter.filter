@@ -211,6 +211,21 @@ MinimapIcon 0 Cyan Diamond
 PlayAlertSound 2 300
 PlayEffect Cyan
 
+# --- Crafting breakpoints for top-tier affix chances ---
+Show
+ItemLevel == 81
+SetBorderColor 255 170 100
+Continue
+
+Show
+ItemLevel >= 82
+SetBorderColor 255 100 50
+Continue
+
+#--------------------------
+# Socketables and Special Character Equipment
+#--------------------------
+
 # Special A Tier - League specific socketables and jewels
 Show 
 BaseType "Soul Core" "Timeless"
@@ -225,20 +240,22 @@ PlayEffect Cyan
 Show 
 Rarity Rare
 BaseType == "Breach Ring"
-SetTextColor 0 240 190
-SetBorderColor 0 240 190
+SetTextColor 30 0 30
+SetBorderColor 30 0 30
+SetBackgroundColor 255 0 255
 SetFontSize 40
-MinimapIcon 1 Cyan Diamond
-PlayEffect Cyan
+MinimapIcon 1 Purple Diamond
+PlayEffect Purple
 PlayAlertSound 2 300
 
 Show 
 Rarity <= Magic
 BaseType == "Breach Ring"
-SetTextColor 0 240 190
+SetTextColor 240 100 240
+SetBorderColor 240 100 240
 SetFontSize 35
-MinimapIcon 2 Cyan Diamond
-PlayEffect Cyan Temp
+MinimapIcon 2 Purple Diamond
+PlayEffect Purple Temp
 
 # Special A Tier - Sanctum Relics
 Show 
@@ -460,9 +477,23 @@ SetFontSize 25
 
 Show
 WaystoneTier == 15
-SetBorderColor 0 0 255
-SetBackgroundColor 0 70 0
+SetBorderColor 0 255 0 255
+SetBackgroundColor 255 255 255
+SetTextColor 0 0 0 255
 SetFontSize 40
+PlayAlertSound 4 300
+PlayEffect Yellow
+MinimapIcon 1 Yellow Square
+
+Show
+WaystoneTier == 14
+SetTextColor 255 255 255
+SetBorderColor 255 255 255
+SetBackgroundColor 0 0 0 175
+SetFontSize 30
+PlayAlertSound 4 300
+PlayEffect White
+MinimapIcon 1 White Square
 
 Show
 WaystoneTier <= 13
@@ -471,7 +502,8 @@ BaseType "Waystone"
 Rarity <= Rare
 SetTextColor 255 255 255
 SetBorderColor 255 255 255
-SetFontSize 30
+SetBackgroundColor 0 0 0 175
+SetFontSize 25
 
 Show
 WaystoneTier <= 10
@@ -481,7 +513,7 @@ Rarity <= Rare
 SetTextColor 255 255 255
 SetBorderColor 255 255 255
 SetBackgroundColor 0 0 0 175
-SetFontSize 30
+SetFontSize 25
 
 Show
 WaystoneTier < 5
@@ -499,8 +531,8 @@ Rarity <= Rare
 SetTextColor 255 255 255
 SetBorderColor 255 255 255
 PlayAlertSound 4 300
-PlayEffect White
-MinimapIcon 1 White Square
+# PlayEffect White
+# MinimapIcon 1 White Square
 SetFontSize 40
 
 
@@ -523,13 +555,20 @@ MinimapIcon 1 Yellow Diamond
 
 Show
 Rarity Normal
+ItemLevel >= 81
 Class "Rings" "Amulets" "Belts"
-SetFontSize 40
+SetBorderColor 255 170 100
+SetFontSize 30
+
+Show
+Rarity Normal
+Class "Rings" "Amulets" "Belts"
+SetFontSize 30
 
 Show
 Class "Rings" "Amulets" "Belts"
 Rarity Magic
-SetFontSize 40
+SetFontSize 30
 
 #--------------------------
 # Salvagable Items
